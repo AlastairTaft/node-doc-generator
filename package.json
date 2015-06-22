@@ -6,7 +6,7 @@
   },
   "name": "doc-generator",
   "description": "Generate node style documentation",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": [
     "docs",
     "documentation",
