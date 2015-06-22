@@ -6,7 +6,7 @@
   },
   "name": "doc-generator",
   "description": "Internal tool for generating Node.js API docs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "test": "lab -v"
   },
@@ -24,8 +24,8 @@
   },
   "contributors": [
     {
-      "name" : "Alastair Taft",
-      "email" : "alastair@fleep.io"
+      "name": "Alastair Taft",
+      "email": "alastair@fleep.io"
     }
   ]
 }
