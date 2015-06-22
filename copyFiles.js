@@ -62,7 +62,7 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
 
   // Now lets copy all our documentation into one folder
   .then(function(){
-    debugger;
+    
     
     fs.mkdir(tempFolder);
 
@@ -107,7 +107,7 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
     return Promise.resolve(paths);
   })
   .then(function(paths){
-    debugger;
+    
     // Generate the html
     var ps = [];
     paths.forEach(function(p){
@@ -166,7 +166,6 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
     fs.rmdirSync(tempFolder);
   })
   .catch(function(err){
-    debugger;
     console.error(err);
   })
 

@@ -7,20 +7,22 @@ You can generate html and json for single files in your **package.json** scripts
     {
       "scripts": {
         "generate-html": "node-doc-generator doc/index.md --format=html 
-          --template=doc/template.html"
+          --template=doc/template.html",
         "generate-json": "node-doc-generator doc/index.md --format=json"
       }
     }
 
-Alternatively you can pool all your documentation from included packages into one folder. This will look inside the '~/doc' folder of each package that's included and output the pooled results into the output dir of **this** package.
+Alternatively you can pool all your documentation from included packages into one folder. This will look inside the '~/doc' sub-directory of each package that's included and output the pooled results into the specified output dir of **this** package. This means that each included package has to follow the convention of putting it's markdown docs inside the 'doc' sub folder.
 
     {
       "scripts": {
         "generate-html": "generate-package-docs @alastair/pbx-providesql 
-          @alastair/pbx-ui @alastair/pbx-api @alastair/pbx-rules @alastair/pbx-product-export --outputDir=doc --format=html 
-          --template=doc/template.html"
+          @alastair/pbx-ui @alastair/pbx-api @alastair/pbx-rules 
+          @alastair/pbx-product-export --outputDir=doc --format=html 
+          --template=doc/template.html",
         "generate-json": "generate-package-docs @alastair/pbx-providesql 
-          @alastair/pbx-ui @alastair/pbx-api @alastair/pbx-rules @alastair/pbx-product-export --outputDir=doc --format=json"
+          @alastair/pbx-ui @alastair/pbx-api @alastair/pbx-rules 
+          @alastair/pbx-product-export --outputDir=doc --format=json"
       }
     }
 
