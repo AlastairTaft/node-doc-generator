@@ -6,8 +6,13 @@
   },
   "name": "doc-generator",
   "description": "Internal tool for generating Node.js API docs",
-  "version": "0.1.4",
-  "keywords": ["docs", "documentation", "node docs", "node documentation"],
+  "version": "0.1.5",
+  "keywords": [
+    "docs",
+    "documentation",
+    "node docs",
+    "node documentation"
+  ],
   "scripts": {
     "test": "lab -v"
   },
@@ -29,12 +34,12 @@
       "email": "alastair@fleep.io"
     }
   ],
-  "bugs": { 
-    "url" : "https://github.com/AlastairTaft/node-doc-generator/issues",
-    "email" : "alastair@fleep.io"
+  "bugs": {
+    "url": "https://github.com/AlastairTaft/node-doc-generator/issues",
+    "email": "alastair@fleep.io"
   },
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/AlastairTaft/node-doc-generator.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlastairTaft/node-doc-generator.git"
   }
 }
