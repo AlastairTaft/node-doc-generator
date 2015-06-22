@@ -1,4 +1,4 @@
-Generate node style documentation. Adapted from the code used to generate the official node.js docs.
+Adapted from the code used to generate the official node.js docs.
 
 # Usage
 

@@ -5,7 +5,7 @@
     "url": "http://blog.izs.me/"
   },
   "name": "doc-generator",
-  "description": "Internal tool for generating Node.js API docs",
+  "description": "Generate node style documentation",
   "version": "0.1.6",
   "keywords": [
     "docs",
