@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>pbx-ui Pbx undefined Manual &amp; Documentation</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/sh.css">
+  <link rel="canonical" href="http://nodejs.org/api/all.md.html">
+</head>
+<body class="alt apidoc" id="api-section-all.md">
+    <div id="content" class="clearfix">
+        <div id="column1" class="interior">
+          <header>
+            <h1>Node.js undefined Manual &amp; Documentation</h1>
+            <div id="gtoc">
+              <p>
+                <a href="index.html" name="toc">Index</a> |
+                <a href="all.html">View on single page</a> |
+                <a href="all.md.json">View as JSON</a>
+              </p>
+            </div>
+            <hr>
+          </header>
+
+          <div id="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+<li><a href="#all_md_pbx_ui">pbx-ui</a><ul>
+<li><a href="#all_md_class_ui_db_config_pbxrulesfilepath_spreadsheetrulesfilepath">Class: Ui(db, config, pbxRulesFilepath, spreadsheetRulesFilepath)</a><ul>
+<li><a href="#all_md_class_method_ui_getrouter">Class Method: Ui.getRouter()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#all_md_pbx_api">pbx-api</a><ul>
+<li><a href="#all_md_class_api_db_productexport_pbxrulesfilepath_spreadsheetrulesfilepath">Class: Api(db, productExport, pbxRulesFilepath, spreadsheetRulesFilepath)</a><ul>
+<li><a href="#all_md_class_method_ui_getrouter_1">Class Method: Ui.getRouter()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+
+          <div id="apicontent">
+            <h1>pbx-ui<span><a class="mark" href="#all_md_pbx_ui" id="all_md_pbx_ui">#</a></span></h1>
+<pre class="api_stability_1">Stability: 1 - Experimental</pre><p>Provides a router middleware function that serves pages to display and edit a product.
+
+</p>
+<pre><code>var Ui = require(&apos;@alastair/pbx-ui&apos;),
+  ui = new Ui(db, config, pbxRulesFilepath, spreadsheetRulesFilepath);
+
+app.use(&quot;/myProduct&quot;, ui.getRouter());</code></pre>
+<h2>Class: Ui(db, config, pbxRulesFilepath, spreadsheetRulesFilepath)<span><a class="mark" href="#all_md_class_ui_db_config_pbxrulesfilepath_spreadsheetrulesfilepath" id="all_md_class_ui_db_config_pbxrulesfilepath_spreadsheetrulesfilepath">#</a></span></h2>
+<p>This class makes up the package.
+
+</p>
+<ul>
+<li><code>db</code> This object interfaces with the database layer. It can be interchanged with other implementations to change where the data is stored and fetched from. </li>
+<li><p><code>config</code> An object with additional settings it needs the product name as a minimum but this dependency might be phased out in the future.</p>
+<p>  {</p>
+<pre><code>// Required
+&quot;name&quot;: &quot;myProduct&quot;, // The product name  
+// Optional
+&quot;sensitiveErrors&quot;: &quot;false&quot;, // Display sensitive errors to the client
+&quot;virtualDir&quot;: &quot;&quot;, // My be needed if hosted under IIS
+&quot;isEditor&quot;: &quot;false&quot;, // Turns the ui into an editor for the product, 
+  // is under development so use at your own risk.
+&quot;debugJs&quot;: &quot;false&quot; // Runs the plovr tool that loads all the 
+  // individual JS files that make up the compressed closure.js file.
+  // Useful for debugging or at the very least running something more 
+  // stable if there is an error in the compressed file. </code></pre>
+<p>  }</p>
+</li>
+<li><p><code>pbxRulesFilepath</code> A filepath to where the pbxRules file lives. This is generated with the <code>pbx-rules</code> package.</p>
+</li>
+<li><p><code>spreadsheetRulesFilepath</code> A filepath to where the spreadsheetRules file lives. This is generated with the <code>pbx-rules</code> package.</p>
+</li>
+<li><h3>Class Method: Ui.getRouter()<span><a class="mark" href="#all_md_class_method_ui_getrouter" id="all_md_class_method_ui_getrouter">#</a></span></h3>
+</li>
+</ul>
+<p>Returns the middleware function that handles incoming requests for this product.
+
+</p>
+<h1>pbx-api<span><a class="mark" href="#all_md_pbx_api" id="all_md_pbx_api">#</a></span></h1>
+<pre class="api_stability_1">Stability: 1 - Experimental</pre><p>Provides a router middleware function that serves requests with json responses.
+
+</p>
+<pre><code>var Api = require(&apos;@alastair/pbx-api&apos;),
+  api = new Api(db, productExport, pbxRulesFilepath, spreadsheetRulesFilepath);
+
+app.use(&quot;/myProduct&quot;, api.getRouter());</code></pre>
+<p>Once your application is running you can visit <a href="http://localhost:3000/docs/api">http://localhost:3000/docs/api</a> (depending on what url you configured it for) for an interactive document of what api methods are exposed.
+
+</p>
+<h2>Class: Api(db, productExport, pbxRulesFilepath, spreadsheetRulesFilepath)<span><a class="mark" href="#all_md_class_api_db_productexport_pbxrulesfilepath_spreadsheetrulesfilepath" id="all_md_class_api_db_productexport_pbxrulesfilepath_spreadsheetrulesfilepath">#</a></span></h2>
+<p>This class makes up the package.
+
+</p>
+<ul>
+<li><code>db</code> This object interfaces with the database layer. It can be interchanged with other implementations to change where the data is stored and fetched from. </li>
+<li><p><code>productExport</code> Can grab this from the <code>pbx-product-export</code> package.</p>
+</li>
+<li><p><code>pbxRulesFilepath</code> A filepath to where the pbxRules file lives. This is generated with the <code>pbx-rules</code> package.</p>
+</li>
+<li><p><code>spreadsheetRulesFilepath</code> A filepath to where the spreadsheetRules file lives. This is generated with the <code>pbx-rules</code> package.</p>
+</li>
+<li><h3>Class Method: Ui.getRouter()<span><a class="mark" href="#all_md_class_method_ui_getrouter_1" id="all_md_class_method_ui_getrouter_1">#</a></span></h3>
+</li>
+</ul>
+<p>Returns the middleware function that handles incoming requests for this product.
+
+</p>
+
+          </div>
+        </div>
+    </div>
+    <div id="footer">
+       
+    </div>
+
+  <script src="assets/sh_main.js"></script>
+  <script src="assets/sh_javascript.min.js"></script>
+  <script>highlight(undefined, undefined, 'pre');</script>
+</body>
+</html>

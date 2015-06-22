@@ -1,0 +1,31 @@
+{
+  "author": {
+    "name": "Isaac Z. Schlueter",
+    "email": "i@izs.me",
+    "url": "http://blog.izs.me/"
+  },
+  "name": "doc-generator",
+  "description": "Internal tool for generating Node.js API docs",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "lab -v"
+  },
+  "dependencies": {
+    "marked": "~0.1.9",
+    "promise": "^7.0.3"
+  },
+  "devDependencies": {
+    "lab": "~5.2.1"
+  },
+  "optionalDependencies": {},
+  "bin": {
+    "node-doc-generator": "./generate.js",
+    "generate-package-docs": "./gen-package-docs.js"
+  },
+  "contributors": [
+    {
+      "name" : "Alastair Taft",
+      "email" : "alastair@fleep.io"
+    }
+  ]
+}
