@@ -133,8 +133,6 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
             var generator = new Generator(stream, 'html', htmlTemplate);
             generator.generate(p, function(err){
               stream.end();
-              // Delete the temp file
-              fs.unlinkSync(p);
               if (err) return reject(err);        
               resolve();
             });
@@ -147,8 +145,6 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
             var generator = new Generator(stream, 'json');
             generator.generate(p, function(err){
               stream.end();
-              // Delete the temp file
-              fs.unlinkSync(p);
               if (err) return reject(err);
               resolve();
             });
@@ -160,12 +156,25 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
       
       ps.push(promise);
     })
-    return Promise.all(ps);
+    return Promise.all(ps).then(function(){
+      // Delete all the files
+      paths.forEach(function(p){
+        fs.unlinkSync(p);
+      });
+      return Promise.resolve();
+    })
+    .catch(function(err){
+      // Delete all the files
+      paths.forEach(function(p){
+        fs.unlinkSync(p);
+      });
+    })
   })
   .then(function(){
     fs.rmdirSync(tempFolder);
   })
   .catch(function(err){
+    fs.rmdirSync(tempFolder);
     console.error(err);
   })
 

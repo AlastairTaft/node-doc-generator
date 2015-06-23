@@ -126,4 +126,4 @@ Generator.prototype.next = function(er, input, inputFile, cb)
   }
 }
 
-module.exports = Generator;
+module.exports = Generator;

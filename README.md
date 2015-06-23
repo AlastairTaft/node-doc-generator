@@ -128,3 +128,7 @@ unlikely to ever have to change.
 
 5 - Locked.  Unless serious bugs are found, this code will not ever
 change.  Please do not suggest changes in this area, they will be refused.
+
+# Troubleshooting
+
+  - Generating the json doc format can be really fussy, so you'll have to make sure you've got the exact markdown format right, have a look at the source of official node docs for examples

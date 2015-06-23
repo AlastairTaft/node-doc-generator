@@ -24,7 +24,7 @@ args.forEach(function (arg) {
 if (typeof outputDir === 'undefined')
   throw "outputDir not provided"
 
-if (typeof template === 'undefined')
+if (typeof template === 'undefined' && format == 'html')
   throw "template not provided"
 
 generate(packages, outputDir, format, template);
