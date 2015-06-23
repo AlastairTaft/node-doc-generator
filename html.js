@@ -39,7 +39,9 @@ function render(lexed, filename, template, config, cb) {
   // get the section
   var section = getSection(lexed);
 
-  filename = path.basename(filename, '.markdown');
+  // Should be .markdown or .md
+  var ext = path.extname(filename),
+    filename = path.basename(filename, ext);
 
   lexed = parseLists(lexed);
 
@@ -49,6 +51,8 @@ function render(lexed, filename, template, config, cb) {
     if (er) return cb(er);
 
     template = template.replace(/__FILENAME__/g, filename);
+    template = template.replace(/__FILENAME_URL__/g, encodeURIComponent(
+      filename));
     template = template.replace(/__SECTION__/g, section);
     template = template.replace(/__VERSION__/g, process.env.NODE_DOC_VERSION);
     template = template.replace(/__TOC__/g, toc);

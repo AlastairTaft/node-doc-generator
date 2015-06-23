@@ -5,6 +5,7 @@
 var path = require('path'),
   fs = require('fs'),
   spawn = require('child_process').spawn;
+  os = require('os');
 
 //var generator = require('doc-generator'),
 var  walk = require(__dirname + "/lib/walk.js"),
@@ -69,7 +70,13 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
     var ps = [];
     for (var newPath in docNewPathFrom){
       var paths = docNewPathFrom[newPath];
-      if (paths.length > 1){
+
+      // If newPath lands on any of the reseved locations we have to add the
+      // package name to it to stop clashes
+      var isReserved = (newPath == path.resolve(tempFolder, "index.md")
+        || newPath == path.resolve(tempFolder, "all.md"))
+
+      if (paths.length > 1 || isReserved){
         paths.forEach(function(p){
           var dir = path.dirname(newPath),
             ext = path.extname(p),
@@ -97,13 +104,32 @@ module.exports = function(packages, outputDir, format, htmlTemplate){
     var allMdContent = "";
     paths.forEach(function(p){
       var include = p.slice(tempFolder.length + 1);
-      allMdContent += "@include " + include + "\r\n";
+      allMdContent += "@include " + include + os.EOL;
     });
     // Assumes an all.md file doesn't exist
     var w = fs.createWriteStream(tempFolder + "/all.md");
     w.write(allMdContent);
     w.end();
+
+    // Generate an index file, needs some logic to not overrite
+    // an existing file TODO
+    var indexContent = "";
+    paths.forEach(function(p){
+      var filename = p.slice(tempFolder.length + 1),
+        ext = path.extname(filename),
+        filename = path.basename(filename, ext);
+      indexContent += "  - [" + filename + "](" + encodeURIComponent(filename) 
+        + ".html" + ")" + os.EOL;
+    });
+    // Assumes an all.md file doesn't exist
+    var w = fs.createWriteStream(tempFolder + "/index.md");
+    w.write(indexContent);
+    w.end();
+
+    // Do this after so they don't include each other
     paths.push(tempFolder + "/all.md");
+    paths.push(tempFolder + "/index.md");
+
     return Promise.resolve(paths);
   })
   .then(function(paths){
