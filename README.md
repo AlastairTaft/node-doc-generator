@@ -26,6 +26,8 @@ Alternatively you can pool all your documentation from included packages into on
       }
     }
 
+Generating docs this way (for included packages) will also generate an all.html and index.html file.
+
 See the examples directory of this package for an example html template.
 
 # How to write the documentation
