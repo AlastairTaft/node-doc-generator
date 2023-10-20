@@ -1,3 +1,6 @@
+# ⚠️ Archived
+This repo is not maintained.
+
 Adapted from the code used to generate the official node.js docs.
 
 # Usage
